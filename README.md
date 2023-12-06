@@ -29,4 +29,4 @@ python train.py
 To test the model, run:
 ```
 python test.py
-```eys.path.append('/home/ha01994/tspred_code/')
+```
