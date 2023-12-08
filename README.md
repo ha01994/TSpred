@@ -36,3 +36,8 @@ To test the model, run:
 ```
 python test.py
 ```
+
+## Contact information
+If you have questions, please contact ha01994@kaist.ac.kr.
+
+
