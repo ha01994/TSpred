@@ -11,7 +11,7 @@ The datasets used in the paper are provided in the `datasets.zip` file.
 - NetTCR_strict (consists of 5 different cross validation datasets with 5 different random seeds)
 
 ## Setting up a conda environment for TSpred
-First create a conda environment, and activate the environment
+First create a conda environment, and activate the environment:
 ```
 conda env create -n tspred python=3.7.0
 conda activate tspred
