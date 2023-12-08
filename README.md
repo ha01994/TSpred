@@ -23,6 +23,8 @@ pip install -r requirements.txt
 Our model is trained on an environment with CUDA version 11.3.
 
 ## Running code on example data
+Example training, validation, and test data can be found in the `example_data` folder. 
+
 To format data and perform preprocessing, run:
 ```
 python get_data_ready.py
