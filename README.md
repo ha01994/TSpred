@@ -4,8 +4,11 @@ This is the code for the paper "TSpred: a robust prediction framework for TCR-ep
 https://www.biorxiv.org/content/10.1101/2023.12.04.570002v1
 
 ## Datasets
-The datasets used in the paper are provided in datasets.zip file. 
-### NetTCR
+The datasets used in the paper are provided in the datasets.zip file. 
+- NetTCR_full
+- IMMREP
+- NetTCR_bal
+- NetTCR_strict (consists of 5 different cross validation datasets with 5 different random seeds)
 
 ## Setting up a conda environment for TSpred
 First create a conda environment, and activate the environment
