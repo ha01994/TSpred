@@ -4,7 +4,7 @@
 
 This is the code for the paper "TSpred: a robust prediction framework for TCR-epitope interactions based on an ensemble deep learning approach using paired chain TCR sequence data". 
 
-Link to the paper: https://www.biorxiv.org/content/10.1101/2023.12.04.570002v1
+Link to the paper: https://www.biorxiv.org/content/10.1101/2023.12.04.570002v2
 
 ## Datasets
 The datasets used in the paper are provided in the `datasets.zip` file. 
