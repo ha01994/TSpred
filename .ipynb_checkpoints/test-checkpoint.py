@@ -5,7 +5,7 @@ import random
 import torch
 import torch.nn.functional as F
 import torch.nn as nn
-from load_dataset import Dataset
+from utils.load_dataset import Dataset
 from models.model_att import attmodel
 from models.model_cnn import cnnmodel
 from utils.evaluate import *
@@ -45,7 +45,9 @@ def load_ft_dict(protein_ft_dict, batch_pep_idx, batch_tcr_idx):
            'batch_a3_seq': protein_ft_dict['a3_seq'][batch_tcr_idx],
            'batch_b1_seq': protein_ft_dict['b1_seq'][batch_tcr_idx],
            'batch_b2_seq': protein_ft_dict['b2_seq'][batch_tcr_idx],
-           'batch_b3_seq': protein_ft_dict['b3_seq'][batch_tcr_idx]}
+           'batch_b3_seq': protein_ft_dict['b3_seq'][batch_tcr_idx],
+           'batch_pep_sequence': np.array(protein_ft_dict['pep_sequence'])[batch_pep_idx],    
+           'batch_tcr_sequence': np.array(protein_ft_dict['tcr_sequence'])[batch_tcr_idx],}
 
 
 
@@ -54,6 +56,9 @@ def run_evaluation(pair_idx, model, bsz, pairs_pep_indices, pairs_tcr_indices, a
     model.eval()
 
     preds, labels, losses = [], [], []
+    pep_sequences, tcr_sequences = [], []
+    pep_indices, tcr_indices = [], []
+    
     j = int(len(pair_idx)/bsz) if len(pair_idx)%bsz==0 else int(len(pair_idx)/bsz)+1
     for i in range(j):
         batch_idx = pair_idx[i*bsz: (i+1)*bsz]
@@ -71,11 +76,15 @@ def run_evaluation(pair_idx, model, bsz, pairs_pep_indices, pairs_tcr_indices, a
         losses.append(loss.cpu().detach().item())
         preds.extend(list(pred.cpu().detach().numpy()))
         labels.extend(list(label.cpu().detach().numpy()))
+        pep_sequences.extend(ft_dict['batch_pep_sequence'])
+        tcr_sequences.extend(ft_dict['batch_tcr_sequence'])
+        pep_indices.extend(batch_pep_idx)
+        tcr_indices.extend(batch_tcr_idx)
         
     loss = np.mean(losses)
-    auroc, auprc = evaluation_metrics(preds, labels)    
+    auroc, auprc = evaluation_metrics(preds, labels)
 
-    return loss, auroc, auprc, preds, labels
+    return loss, auroc, auprc, preds, labels, pep_sequences, tcr_sequences, pep_indices, tcr_indices
 
 
 
@@ -92,7 +101,7 @@ for mode in ['cnn','att','ensemble']:
     max_a1_len, max_a2_len, max_a3_len, max_b1_len, max_b2_len, max_b3_len,\
     = dataset.get_stuff()
 
-    with open('hyperparams.csv', 'r') as f:
+    with open('utils/hyperparams.csv', 'r') as f:
         r = csv.reader(f)
         for line in r:
             if line[0]=='bsz':bsz=int(line[1])
@@ -109,12 +118,14 @@ for mode in ['cnn','att','ensemble']:
     ####################################################################################################
 
     model_cnn_.load_state_dict(torch.load('save_dir/cnn/model.pt', map_location=device))
-    _, _, _, cnn_preds, cnn_labels = run_evaluation(test_index, model_cnn_, bsz, pairs_pep_indices, pairs_tcr_indices,
-                                                    all_label_mat, protein_ft_dict, 'cnn')
+    _, _, _, cnn_preds, cnn_labels, pep_sequences, tcr_sequences, pep_indices, tcr_indices = run_evaluation(
+        test_index, model_cnn_, bsz, pairs_pep_indices, pairs_tcr_indices,
+        all_label_mat, protein_ft_dict, 'cnn')
 
     model_att_.load_state_dict(torch.load('save_dir/att/model.pt', map_location=device))
-    _, _, _, att_preds, att_labels = run_evaluation(test_index, model_att_, bsz, pairs_pep_indices, pairs_tcr_indices,
-                                                    all_label_mat, protein_ft_dict, 'att')
+    _, _, _, att_preds, att_labels, pep_sequences, tcr_sequences, pep_indices, tcr_indices = run_evaluation(
+        test_index, model_att_, bsz, pairs_pep_indices, pairs_tcr_indices,
+        all_label_mat, protein_ft_dict, 'att')
 
     if mode=='ensemble':
         preds = [sum(x)/2. for x in zip(cnn_preds, att_preds)]
@@ -128,6 +139,12 @@ for mode in ['cnn','att','ensemble']:
     
     print('ROC-AUC: %.4f'%test_auroc)
     print('PR-AUC: %.4f'%test_auprc)    
+    
+    if mode=='ensemble':        
+        with open('predictions.csv', 'w') as fw:
+            fw.write('pep_id,tcr_id,pep_seq,tcr_seq,label,prediction\n')
+            for q,w,e,r,t,y in zip(pep_indices, tcr_indices, pep_sequences, tcr_sequences, cnn_labels, preds):
+                fw.write('%d,%d,%s,%s,%d,%.4f\n'%(q,w,e,r,t,y))
 
     ####################################################################################################
 

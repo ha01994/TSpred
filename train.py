@@ -16,14 +16,14 @@ import shutil
 
 
 
-if os.path.isdir('results/'):
-    shutil.rmtree('results/')
+if os.path.isdir('losses/'):
+    shutil.rmtree('losses/')
 if os.path.isdir('save_dir/'):
     shutil.rmtree('save_dir/')
 
-os.mkdir('results/')
-os.mkdir('results/cnn')
-os.mkdir('results/att')
+os.mkdir('losses/')
+os.mkdir('losses/cnn')
+os.mkdir('losses/att')
 os.mkdir('save_dir/')
 os.mkdir('save_dir/cnn')
 os.mkdir('save_dir/att')
@@ -111,7 +111,7 @@ def run_evaluation(pair_idx, model, bsz, pairs_pep_indices, pairs_tcr_indices, a
 
 
 save_dir = 'save_dir/cnn/'
-result_dir = 'results/cnn/'
+result_dir = 'losses/cnn/'
 
 set_random_seed()
 
@@ -188,7 +188,7 @@ for epoch in range(1, epochs_cnn+1):
         
 
 save_dir = 'save_dir/att/'
-result_dir = 'results/att/'
+result_dir = 'losses/att/'
 
 set_random_seed()
 
