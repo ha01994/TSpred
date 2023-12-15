@@ -150,6 +150,8 @@ b1_onehot = onehot_encode(b1_seqs_set, max_b1_len)
 b2_onehot = onehot_encode(b2_seqs_set, max_b2_len)
 b3_onehot = onehot_encode(b3_seqs_set, max_b3_len)
 tcr_onehot = onehot_encode(tcr_seqs_set, max_tcr_len)
+a_onehot = onehot_encode(a_seqs_set, max_a1_len+max_a2_len+max_a3_len)
+b_onehot = onehot_encode(b_seqs_set, max_b1_len+max_b2_len+max_b3_len)
 
 protein_ft_dict['pep_onehot'] = pep_onehot
 protein_ft_dict['a1_onehot'] = a1_onehot
@@ -159,15 +161,20 @@ protein_ft_dict['b1_onehot'] = b1_onehot
 protein_ft_dict['b2_onehot'] = b2_onehot
 protein_ft_dict['b3_onehot'] = b3_onehot
 protein_ft_dict['tcr_onehot'] = tcr_onehot
+protein_ft_dict['a_onehot'] = a_onehot
+protein_ft_dict['b_onehot'] = b_onehot
 
 protein_ft_dict['pep_seq'] = aa_to_num(pep_seqs_set, max_pep_len)
 protein_ft_dict['tcr_seq'] = aa_to_num(tcr_seqs_set, max_tcr_len)
+
 protein_ft_dict['a1_seq'] = aa_to_num(a1_seqs_set, max_a1_len)
 protein_ft_dict['a2_seq'] = aa_to_num(a2_seqs_set, max_a2_len)
 protein_ft_dict['a3_seq'] = aa_to_num(a3_seqs_set, max_a3_len)
 protein_ft_dict['b1_seq'] = aa_to_num(b1_seqs_set, max_b1_len)
 protein_ft_dict['b2_seq'] = aa_to_num(b2_seqs_set, max_b2_len)
 protein_ft_dict['b3_seq'] = aa_to_num(b3_seqs_set, max_b3_len)
+protein_ft_dict['a_seq'] = aa_to_num(a_seqs_set, max_a1_len+max_a2_len+max_a3_len)
+protein_ft_dict['b_seq'] = aa_to_num(b_seqs_set, max_b1_len+max_b2_len+max_b3_len)
 
 protein_ft_dict['pep_sequence'] = pep_seqs_set
 protein_ft_dict['tcr_sequence'] = tcr_seqs_set
