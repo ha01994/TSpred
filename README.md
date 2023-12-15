@@ -32,11 +32,15 @@ pip install -r requirements.txt
 Example training, validation, and test data can be found in the `example_data` folder. 
 
 ### Data preprocessing
-To format data and perform preprocessing, run:
+To change the data format to fit our data processing pipeline, run:
 ```
 python get_data_ready.py
+```
+To perform preprocessing on the formatted data, run:
+```
 python pp.py
 ```
+This will generate preprocessed .npy and .pkl files in the `features` folder. These files are used for training and testing.
 ### Training
 To train the model, run:
 ```
