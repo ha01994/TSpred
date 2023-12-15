@@ -33,8 +33,7 @@ class Dataset():
 
 
     def get_stuff(self):        
-        return self.all_label_mat, self.pairs_pep_indices, self.pairs_tcr_indices,\
-                self.max_pep_len,\
+        return self.all_label_mat, self.pairs_pep_indices, self.pairs_tcr_indices, self.max_pep_len,\
                 self.train_index, self.val_index, self.test_index,\
                 self.max_a1_len, self.max_a2_len, self.max_a3_len, \
                 self.max_b1_len, self.max_b2_len, self.max_b3_len, 
