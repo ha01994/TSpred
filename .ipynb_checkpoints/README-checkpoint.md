@@ -32,26 +32,26 @@ pip install -r requirements.txt
 ## Running code on an example dataset
 Example training, validation, and test data can be found in the `example_data` folder. 
 
-They are in the following format:
+Example format of the files in `example_data`:
 
     peptide,A1,A2,A3,B1,B2,B3,binder
     NLVPMVATV,SVFSS,VVTGGEV,AGPEGGYSGAGSYQLT,SGDLS,YYNGEE,ASSVSGATADTQY,0
     LLWNGPMAV,TRDTTYY,RNSFDEQN,ALSGEGTGRRALT,GTSNPN,SVGIG,AWSVQGTDTQY,0
-    TTDPSFLGRY,TSGFNG,NVLDGL,AVRVFNARLM,SNHLY,FYNNEI,ASSEEIAKNIQY,0
-    GILGFVFTL,VSGLRG,LYSAGEE,AVRANQAGTALI,SGHRS,YFSETQ,ASSLTGSNTEAF,0
+    TTDPSFLGRY,TSGFNG,NVLDGL,AVRVFNARLM,SNHLY,FYNNEI,ASSEEIAKNIQY,1
+    GILGFVFTL,VSGLRG,LYSAGEE,AVRANQAGTALI,SGHRS,YFSETQ,ASSLTGSNTEAF,1
 
 ### Data preprocessing
 To change the data format to fit our data processing pipeline, run:
 ```
 python get_data_ready.py
 ```
-This will change the data to the following format:
+Example format of the formatted data:
 
     pep_id,tcr_id,label,split
-    pep12,tcr254,0,train
-    pep13,tcr2713,0,train
-    pep6,tcr3719,0,train
-    pep4,tcr2935,0,train
+    pep12,tcr254,0,train    
+    pep16,tcr3719,0,val
+    pep3,tcr2713,1,train
+    pep4,tcr295,1,val
     
 The sequences corresponding to the peptide and TCR IDs are found in `formatted_data/ids_pep.csv` and `formatted_data/ids_tcr.csv`.
 
@@ -79,13 +79,13 @@ This code will load the saved models and test the models on the test dataset, re
 
 It will also generate `predictions.csv`, which provides the information on peptide-TCR pairs along with the labels and the model predictions.
 
-It is in the following format:
+Example format of `predictions.csv`:
 
     pep_id,tcr_id,pep_seq,tcr_seq,label,prediction
-    12,4321,NLVPMVATV,DSASNY_IRSNVGE_AASSIYGQNFV_SGHTA_FQGNSA_ASSSTYYGAGGTDTQY,0,0.0683
-    12,4673,NLVPMVATV,SVFSS_VVTGGEV_AGDNNARLM_MNHEY_SMNVEV_ASSSDPSGGGYNEQF,1,0.0000
-    6,1111,TTDPSFLGRY,NSASDY_IRSNMDK_AEFTRQAGTALI_MNHEY_SMNVEV_ASSLSAGLDEQF,1,0.9737
-    16,4104,NQKLIANQF,NSASQS_VYSSG_VVNAHDMR_LNHNV_YYDKDF_ATSSGTGAYEQY,0,0.0000
+    pep10,tcr1445,SPRWYFYYL,TSESDYY_QEAYKQQN_AYFREGKLT_MNHEY_SMNVEV_ASSALTSAKRYEQF,1,0.5357
+    pep12,tcr5238,NLVPMVATV,TSGFYG_NALDGL_AVRDQEGNTPLV_MDHEN_SYDVKM_ASMGGSNEQF,1,0.5253
+    pep8,tcr4463,GLCTLVAML,TSGFNG_NVLDGL_AVRDSDYKLS_MNHNS_SASEGT_AAGDGDQETQY,0,0.0001
+    pep13,tcr4748,LLWNGPMAV,NTAFDY_IRPDVSE_AASLFKAAGNKLT_SGHDT_YYEEEE_ASNQGRTEQY,0,0.2941
 
 
 ## Contact information
