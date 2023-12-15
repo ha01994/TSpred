@@ -94,7 +94,7 @@ for mode in ['cnn','att','ensemble']:
     print('============= MODE: %s ============='%mode)
 
     set_random_seed()    
-    dataset = Dataset('features/')
+    dataset = Dataset('example_run/features/')
     protein_ft_dict = dataset.to_tensor(device)
     all_label_mat, pairs_pep_indices, pairs_tcr_indices,\
     max_pep_len, train_index, val_index, test_index,\
@@ -117,12 +117,12 @@ for mode in ['cnn','att','ensemble']:
 
     ####################################################################################################
 
-    model_cnn_.load_state_dict(torch.load('save_dir/cnn/model.pt', map_location=device))
+    model_cnn_.load_state_dict(torch.load('example_run/save_dir/cnn/model.pt', map_location=device))
     _, _, _, cnn_preds, cnn_labels, pep_sequences, tcr_sequences, pep_indices, tcr_indices = run_evaluation(
         test_index, model_cnn_, bsz, pairs_pep_indices, pairs_tcr_indices,
         all_label_mat, protein_ft_dict, 'cnn')
 
-    model_att_.load_state_dict(torch.load('save_dir/att/model.pt', map_location=device))
+    model_att_.load_state_dict(torch.load('example_run/save_dir/att/model.pt', map_location=device))
     _, _, _, att_preds, att_labels, pep_sequences, tcr_sequences, pep_indices, tcr_indices = run_evaluation(
         test_index, model_att_, bsz, pairs_pep_indices, pairs_tcr_indices,
         all_label_mat, protein_ft_dict, 'att')
@@ -141,7 +141,7 @@ for mode in ['cnn','att','ensemble']:
     print('PR-AUC: %.4f'%test_auprc)    
     
     if mode=='ensemble':        
-        with open('predictions.csv', 'w') as fw:
+        with open('example_run/predictions.csv', 'w') as fw:
             fw.write('pep_id,tcr_id,pep_seq,tcr_seq,label,prediction\n')
             for q,w,e,r,t,y in zip(pep_indices, tcr_indices, pep_sequences, tcr_sequences, cnn_labels, preds):
                 fw.write('pep%d,tcr%d,%s,%s,%d,%.4f\n'%(q,w,e,r,t,y))
