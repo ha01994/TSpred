@@ -93,8 +93,8 @@ test_index = np.where(split=='test')[0]
 
 all_label_mat = df['label'].to_numpy().astype(np.compat.long)
 
-pep_ids_list = df['pep_seq'].to_list()
-tcr_ids_list = df['tcr_seq'].to_list()
+pep_ids_list = df['pep_id'].to_list()
+tcr_ids_list = df['tcr_id'].to_list()
 
 q = sorted(list(set([int(x[3:]) for x in pep_ids_list])))
 pep_ids_set = ['pep%d'%z for z in q]
@@ -118,15 +118,13 @@ np.save(os.path.join(path, 'pairs_tcr_indices'), pairs_tcr_indices)
 
 
 pep_seqs_set = [pep_id_to_seq[x] for x in pep_ids_set]
-tcr_seqs_set = [''.join(tcr_id_to_seq[x].split('_')) for x in tcr_ids_set]
+tcr_seqs_set = [tcr_id_to_seq[x] for x in tcr_ids_set]
 a1_seqs_set = [tcr_id_to_seq[x].split('_')[0] for x in tcr_ids_set]
 a2_seqs_set = [tcr_id_to_seq[x].split('_')[1] for x in tcr_ids_set]
 a3_seqs_set = [tcr_id_to_seq[x].split('_')[2] for x in tcr_ids_set]
 b1_seqs_set = [tcr_id_to_seq[x].split('_')[3] for x in tcr_ids_set]
 b2_seqs_set = [tcr_id_to_seq[x].split('_')[4] for x in tcr_ids_set]
 b3_seqs_set = [tcr_id_to_seq[x].split('_')[5] for x in tcr_ids_set]
-a_seqs_set = [tcr_id_to_seq[x].split('_')[0]+tcr_id_to_seq[x].split('_')[1]+tcr_id_to_seq[x].split('_')[2] for x in tcr_ids_set]
-b_seqs_set = [tcr_id_to_seq[x].split('_')[3]+tcr_id_to_seq[x].split('_')[4]+tcr_id_to_seq[x].split('_')[5] for x in tcr_ids_set]
 
 
 max_pep_len = max([len(x) for x in pep_seqs_set])
@@ -136,9 +134,7 @@ max_a3_len = max([len(x) for x in a3_seqs_set])
 max_b1_len = max([len(x) for x in b1_seqs_set])
 max_b2_len = max([len(x) for x in b2_seqs_set])
 max_b3_len = max([len(x) for x in b3_seqs_set])
-max_tcr_len = max([len(x) for x in tcr_seqs_set])
-print('max_pep_len', max_pep_len)
-print('max_tcr_len', max_tcr_len)
+
 
     
 protein_ft_dict = {}
@@ -149,7 +145,6 @@ a3_onehot = onehot_encode(a3_seqs_set, max_a3_len)
 b1_onehot = onehot_encode(b1_seqs_set, max_b1_len)
 b2_onehot = onehot_encode(b2_seqs_set, max_b2_len)
 b3_onehot = onehot_encode(b3_seqs_set, max_b3_len)
-tcr_onehot = onehot_encode(tcr_seqs_set, max_tcr_len)
 
 protein_ft_dict['pep_onehot'] = pep_onehot
 protein_ft_dict['a1_onehot'] = a1_onehot
@@ -158,10 +153,8 @@ protein_ft_dict['a3_onehot'] = a3_onehot
 protein_ft_dict['b1_onehot'] = b1_onehot
 protein_ft_dict['b2_onehot'] = b2_onehot
 protein_ft_dict['b3_onehot'] = b3_onehot
-protein_ft_dict['tcr_onehot'] = tcr_onehot
 
 protein_ft_dict['pep_seq'] = aa_to_num(pep_seqs_set, max_pep_len)
-protein_ft_dict['tcr_seq'] = aa_to_num(tcr_seqs_set, max_tcr_len)
 protein_ft_dict['a1_seq'] = aa_to_num(a1_seqs_set, max_a1_len)
 protein_ft_dict['a2_seq'] = aa_to_num(a2_seqs_set, max_a2_len)
 protein_ft_dict['a3_seq'] = aa_to_num(a3_seqs_set, max_a3_len)
@@ -174,7 +167,6 @@ protein_ft_dict['tcr_sequence'] = tcr_seqs_set
 
 
 np.save(os.path.join('features','max_pep_len'), max_pep_len)
-np.save(os.path.join('features','max_tcr_len'), max_tcr_len)
 np.save(os.path.join('features','max_a1_len'), max_a1_len)
 np.save(os.path.join('features','max_a2_len'), max_a2_len)
 np.save(os.path.join('features','max_a3_len'), max_a3_len)

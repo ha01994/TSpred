@@ -17,8 +17,7 @@ class Dataset():
         self.pairs_pep_indices = np.load(os.path.join(path, 'pairs_pep_indices.npy'))
         self.pairs_tcr_indices = np.load(os.path.join(path, 'pairs_tcr_indices.npy'))
         self.max_pep_len = np.load(os.path.join('features','max_pep_len.npy'))
-        self.max_tcr_len = np.load(os.path.join('features','max_tcr_len.npy'))
-        
+                
         self.max_a1_len = np.load(os.path.join('features','max_a1_len.npy'))
         self.max_a2_len = np.load(os.path.join('features','max_a2_len.npy'))
         self.max_a3_len = np.load(os.path.join('features','max_a3_len.npy'))
@@ -36,7 +35,7 @@ class Dataset():
 
     def get_stuff(self):        
         return self.all_label_mat, self.pairs_pep_indices, self.pairs_tcr_indices,\
-                self.max_pep_len, self.max_tcr_len,\
+                self.max_pep_len,\
                 self.train_index, self.val_index, self.test_index,\
                 self.max_a1_len, self.max_a2_len, self.max_a3_len, \
                 self.max_b1_len, self.max_b2_len, self.max_b3_len, 

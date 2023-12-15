@@ -118,7 +118,7 @@ set_random_seed()
 dataset = Dataset('features/')
 protein_ft_dict = dataset.to_tensor(device)
 all_label_mat, pairs_pep_indices, pairs_tcr_indices,\
-max_pep_len, max_tcr_len, train_index, val_index, test_index,\
+max_pep_len, train_index, val_index, test_index,\
 max_a1_len, max_a2_len, max_a3_len, max_b1_len, max_b2_len, max_b3_len,\
 = dataset.get_stuff()
 
@@ -126,7 +126,7 @@ print('len(train_index)', len(train_index))
 print('len(val_index)', len(val_index))
 print('len(test_index)', len(test_index))
 
-model = cnnmodel(max_pep_len, max_tcr_len, max_a1_len,max_a2_len,max_a3_len,max_b1_len,max_b2_len,max_b3_len, dropout_cnn).to(device)
+model = cnnmodel(max_pep_len, max_a1_len,max_a2_len,max_a3_len,max_b1_len,max_b2_len,max_b3_len, dropout_cnn).to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=lr_cnn)    
 total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
 print('Number of parameters: %d'%total_params)
@@ -195,7 +195,7 @@ set_random_seed()
 dataset = Dataset('features/')
 protein_ft_dict = dataset.to_tensor(device)
 all_label_mat, pairs_pep_indices, pairs_tcr_indices,\
-max_pep_len, max_tcr_len, train_index, val_index, test_index,\
+max_pep_len, train_index, val_index, test_index,\
 max_a1_len, max_a2_len, max_a3_len, max_b1_len, max_b2_len, max_b3_len,\
 = dataset.get_stuff()
 
@@ -203,7 +203,7 @@ print('len(train_index)', len(train_index))
 print('len(val_index)', len(val_index))
 print('len(test_index)', len(test_index))
 
-model = attmodel(max_pep_len, max_tcr_len, max_a1_len,max_a2_len,max_a3_len,max_b1_len,max_b2_len,max_b3_len, dropout_att).to(device)
+model = attmodel(max_pep_len, max_a1_len,max_a2_len,max_a3_len,max_b1_len,max_b2_len,max_b3_len, dropout_att).to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=lr_att)    
 total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
 print('Number of parameters: %d'%total_params)

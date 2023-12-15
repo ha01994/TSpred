@@ -77,7 +77,7 @@ with open('example_data/test.csv', 'r') as f:
         split.append('test')
     
 with open('formatted_data/data.csv', 'w') as fw:
-    fw.write('pep_seq,tcr_seq,label,split\n')
+    fw.write('pep_id,tcr_id,label,split\n')
     for aa,bb,cc,dd in zip(peps, tcrs, labels, split):
         fw.write('%s,%s,%d,%s\n'%(aa,bb,cc,dd))
 

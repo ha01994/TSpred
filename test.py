@@ -97,7 +97,7 @@ for mode in ['cnn','att','ensemble']:
     dataset = Dataset('features/')
     protein_ft_dict = dataset.to_tensor(device)
     all_label_mat, pairs_pep_indices, pairs_tcr_indices,\
-    max_pep_len, max_tcr_len, train_index, val_index, test_index,\
+    max_pep_len, train_index, val_index, test_index,\
     max_a1_len, max_a2_len, max_a3_len, max_b1_len, max_b2_len, max_b3_len,\
     = dataset.get_stuff()
 
@@ -112,8 +112,8 @@ for mode in ['cnn','att','ensemble']:
             if line[0]=='dropout_att':dropout_att=float(line[1])
             if line[0]=='dropout_cnn':dropout_cnn=float(line[1])
 
-    model_cnn_ = cnnmodel(max_pep_len, max_tcr_len, max_a1_len,max_a2_len,max_a3_len,max_b1_len,max_b2_len,max_b3_len,dropout_cnn).to(device)
-    model_att_ = attmodel(max_pep_len, max_tcr_len, max_a1_len,max_a2_len,max_a3_len,max_b1_len,max_b2_len,max_b3_len,dropout_att).to(device)
+    model_cnn_ = cnnmodel(max_pep_len, max_a1_len,max_a2_len,max_a3_len,max_b1_len,max_b2_len,max_b3_len,dropout_cnn).to(device)
+    model_att_ = attmodel(max_pep_len, max_a1_len,max_a2_len,max_a3_len,max_b1_len,max_b2_len,max_b3_len,dropout_att).to(device)
 
     ####################################################################################################
 

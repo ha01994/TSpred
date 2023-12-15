@@ -93,10 +93,10 @@ class attention_block(nn.Module):
     
 
 class attmodel(nn.Module):
-    def __init__(self, max_pep_len, max_tcr_len, max_a1_len, max_a2_len, max_a3_len, max_b1_len, max_b2_len, max_b3_len, dropout):
+    def __init__(self, max_pep_len, max_a1_len, max_a2_len, max_a3_len, max_b1_len, max_b2_len, max_b3_len, dropout):
         super(attmodel, self).__init__()
         self.dropout = dropout
-        max_pep_len, max_tcr_len = int(max_pep_len), int(max_tcr_len)
+        max_pep_len = int(max_pep_len)
         max_a1_len, max_a2_len, max_a3_len = int(max_a1_len), int(max_a2_len), int(max_a3_len)
         max_b1_len, max_b2_len, max_b3_len = int(max_b1_len), int(max_b2_len), int(max_b3_len)
         max_a_len = max_a1_len+max_a2_len+max_a3_len
