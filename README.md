@@ -31,6 +31,7 @@ pip install -r requirements.txt
 
 ## Running code on an example dataset
 Example training, validation, and test data can be found in the `example_data` folder. 
+
 They are in the following format:
 
     peptide,A1,A2,A3,B1,B2,B3,binder
@@ -75,7 +76,9 @@ To test the model, run:
 python test.py
 ```
 This code will load the saved models and test the models on the test dataset, returning the ROC-AUC and PR-AUC values. 
+
 It will also generate `predictions.csv`, which provides the information on peptide-TCR pairs along with the labels and the model predictions.
+
 It is in the following format:
 
     pep_id,tcr_id,pep_seq,tcr_seq,label,prediction
