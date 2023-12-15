@@ -50,7 +50,7 @@ To test the model, run:
 ```
 python test.py
 ```
-
+This code will load the saved models and test the models on the test dataset, returning the ROC-AUC and PR-AUC values. 
 
 ## Contact information
 If you have questions, please contact ha01994@kaist.ac.kr.
