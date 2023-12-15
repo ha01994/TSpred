@@ -24,6 +24,7 @@ conda activate tspred
 Clone this repository:
 ```
 git clone https://github.com/ha01994/TSpred.git
+cd TSpred
 ```
 Then install the package requirements using pip:
 ```
