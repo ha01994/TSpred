@@ -1,7 +1,6 @@
 # TSpred
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10347986.svg)](https://doi.org/10.5281/zenodo.10347986)
 
-This is the code for the paper "TSpred: a robust prediction framework for TCR-epitope interactions based on an ensemble deep learning approach using paired chain TCR sequence data" (Link: https://www.biorxiv.org/content/10.1101/2023.12.04.570002v2). 
+This is the code for the paper "TSpred: a robust prediction framework for TCR-epitope interactions using paired chain TCR sequence data" (BioRxiv paper link: https://www.biorxiv.org/content/10.1101/2023.12.04.570002v2). 
 
 
 
@@ -96,5 +95,6 @@ Example format of `example_run/predictions.csv`:
 
 ## Contact information
 If you have questions, please contact ha01994@kaist.ac.kr.
+
 
 

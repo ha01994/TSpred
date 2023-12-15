@@ -53,7 +53,6 @@ def aa_to_num(list_, max_len):
 
 
 
-
 pep_id_to_seq = {}
 pep_seq_to_id = {}
 with open('example_run/formatted_data/ids_pep.csv', 'r') as f:

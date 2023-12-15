@@ -39,7 +39,6 @@ def get_loss(pred, label):
 
 
 
-
 with open('utils/hyperparams.csv', 'r') as f:
     r = csv.reader(f)
     for line in r:

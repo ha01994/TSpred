@@ -17,7 +17,6 @@ import subprocess, shutil
 
 
 
-
 def get_loss(pred, label):
     loss_op = nn.BCELoss()
     loss = loss_op(pred, label)

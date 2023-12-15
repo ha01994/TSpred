@@ -26,9 +26,7 @@ class cnnmodule1(nn.Module):
         x = self.out_linear(x) #[bsz, out_dim]                
         return x
 
-    
-        
-    
+
     
     
 

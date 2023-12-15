@@ -82,3 +82,5 @@ with open('example_run/formatted_data/data.csv', 'w') as fw:
         fw.write('%s,%s,%d,%s\n'%(aa,bb,cc,dd))
 
 
+
+        
