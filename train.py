@@ -5,7 +5,7 @@ import pandas as pd
 import torch
 import torch.nn.functional as F
 import torch.nn as nn
-from load_dataset import Dataset
+from utils.load_dataset import Dataset
 from models.model_cnn import cnnmodel
 from models.model_att import attmodel
 from utils.evaluate import *
@@ -40,7 +40,7 @@ def get_loss(pred, label):
 
 
 
-with open('hyperparams.csv', 'r') as f:
+with open('utils/hyperparams.csv', 'r') as f:
     r = csv.reader(f)
     for line in r:
         if line[0]=='bsz':bsz=int(line[1])

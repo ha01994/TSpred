@@ -5,7 +5,7 @@ import random
 import torch
 import torch.nn.functional as F
 import torch.nn as nn
-from load_dataset import Dataset
+from utils.load_dataset import Dataset
 from models.model_att import attmodel
 from models.model_cnn import cnnmodel
 from utils.evaluate import *
@@ -92,7 +92,7 @@ for mode in ['cnn','att','ensemble']:
     max_a1_len, max_a2_len, max_a3_len, max_b1_len, max_b2_len, max_b3_len,\
     = dataset.get_stuff()
 
-    with open('hyperparams.csv', 'r') as f:
+    with open('utils/hyperparams.csv', 'r') as f:
         r = csv.reader(f)
         for line in r:
             if line[0]=='bsz':bsz=int(line[1])

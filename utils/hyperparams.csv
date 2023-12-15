@@ -1,0 +1,7 @@
+bsz,128
+lr_cnn,1e-3
+dropout_cnn,0.6
+epochs_cnn,200
+lr_att,1e-4
+dropout_att,0.6
+epochs_att,200
