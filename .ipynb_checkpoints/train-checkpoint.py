@@ -16,17 +16,17 @@ import shutil
 
 
 
-if os.path.isdir('losses/'):
-    shutil.rmtree('losses/')
-if os.path.isdir('save_dir/'):
-    shutil.rmtree('save_dir/')
+if os.path.isdir('example_run/losses/'):
+    shutil.rmtree('example_run/losses/')
+if os.path.isdir('example_run/save_dir/'):
+    shutil.rmtree('example_run/save_dir/')
 
-os.mkdir('losses/')
-os.mkdir('losses/cnn')
-os.mkdir('losses/att')
-os.mkdir('save_dir/')
-os.mkdir('save_dir/cnn')
-os.mkdir('save_dir/att')
+os.mkdir('example_run/losses/')
+os.mkdir('example_run/losses/cnn')
+os.mkdir('example_run/losses/att')
+os.mkdir('example_run/save_dir/')
+os.mkdir('example_run/save_dir/cnn')
+os.mkdir('example_run/save_dir/att')
 
 
 
@@ -110,12 +110,12 @@ def run_evaluation(pair_idx, model, bsz, pairs_pep_indices, pairs_tcr_indices, a
 
 
 
-save_dir = 'save_dir/cnn/'
-result_dir = 'losses/cnn/'
+save_dir = 'example_run/save_dir/cnn/'
+result_dir = 'example_run/losses/cnn/'
 
 set_random_seed()
 
-dataset = Dataset('features/')
+dataset = Dataset('example_run/features/')
 protein_ft_dict = dataset.to_tensor(device)
 all_label_mat, pairs_pep_indices, pairs_tcr_indices,\
 max_pep_len, train_index, val_index, test_index,\
@@ -187,12 +187,12 @@ for epoch in range(1, epochs_cnn+1):
      
         
 
-save_dir = 'save_dir/att/'
-result_dir = 'losses/att/'
+save_dir = 'example_run/save_dir/att/'
+result_dir = 'example_run/losses/att/'
 
 set_random_seed()
 
-dataset = Dataset('features/')
+dataset = Dataset('example_run/features/')
 protein_ft_dict = dataset.to_tensor(device)
 all_label_mat, pairs_pep_indices, pairs_tcr_indices,\
 max_pep_len, train_index, val_index, test_index,\

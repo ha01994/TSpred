@@ -11,19 +11,18 @@ import sys
 
 class Dataset():
     def __init__(self, path):
-        self.protein_ft_save_path = os.path.join('features','protein_ft_dict.pkl')
+        self.protein_ft_save_path = os.path.join(path, 'protein_ft_dict.pkl')
 
         self.all_label_mat = np.load(os.path.join(path, 'all_label_mat.npy'))
         self.pairs_pep_indices = np.load(os.path.join(path, 'pairs_pep_indices.npy'))
         self.pairs_tcr_indices = np.load(os.path.join(path, 'pairs_tcr_indices.npy'))
-        self.max_pep_len = np.load(os.path.join('features','max_pep_len.npy'))
-                
-        self.max_a1_len = np.load(os.path.join('features','max_a1_len.npy'))
-        self.max_a2_len = np.load(os.path.join('features','max_a2_len.npy'))
-        self.max_a3_len = np.load(os.path.join('features','max_a3_len.npy'))
-        self.max_b1_len = np.load(os.path.join('features','max_b1_len.npy'))
-        self.max_b2_len = np.load(os.path.join('features','max_b2_len.npy'))
-        self.max_b3_len = np.load(os.path.join('features','max_b3_len.npy'))
+        self.max_pep_len = np.load(os.path.join(path, 'max_pep_len.npy'))                
+        self.max_a1_len = np.load(os.path.join(path, 'max_a1_len.npy'))
+        self.max_a2_len = np.load(os.path.join(path, 'max_a2_len.npy'))
+        self.max_a3_len = np.load(os.path.join(path, 'max_a3_len.npy'))
+        self.max_b1_len = np.load(os.path.join(path, 'max_b1_len.npy'))
+        self.max_b2_len = np.load(os.path.join(path, 'max_b2_len.npy'))
+        self.max_b3_len = np.load(os.path.join(path, 'max_b3_len.npy'))
 
         self.train_index = np.load(os.path.join(path, 'train_index.npy'))
         self.val_index = np.load(os.path.join(path, 'val_index.npy'))        

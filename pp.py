@@ -56,7 +56,7 @@ def aa_to_num(list_, max_len):
 
 pep_id_to_seq = {}
 pep_seq_to_id = {}
-with open('./formatted_data/ids_pep.csv', 'r') as f:
+with open('example_run/formatted_data/ids_pep.csv', 'r') as f:
     r = csv.reader(f)
     for line in r:
         pep_id_to_seq[line[0]] = line[1]
@@ -64,7 +64,7 @@ with open('./formatted_data/ids_pep.csv', 'r') as f:
 
 tcr_id_to_seq = {}
 tcr_seq_to_id = {}
-with open('./formatted_data/ids_tcr.csv', 'r') as f:
+with open('example_run/formatted_data/ids_tcr.csv', 'r') as f:
     r = csv.reader(f)
     for line in r:
         tcr_id_to_seq[line[0]] = line[1]
@@ -74,12 +74,12 @@ with open('./formatted_data/ids_tcr.csv', 'r') as f:
         
 
 
-path = 'features/'
+path = 'example_run/features/'
 if os.path.isdir(path):
     shutil.rmtree(path)
 os.mkdir(path)
 
-df = pd.read_csv('./formatted_data/data.csv')
+df = pd.read_csv('example_run/formatted_data/data.csv')
 
 split = df['split'].to_numpy()
 seen_index = np.where(split=='train')[0]
@@ -166,19 +166,19 @@ protein_ft_dict['pep_sequence'] = pep_seqs_set
 protein_ft_dict['tcr_sequence'] = tcr_seqs_set
 
 
-np.save(os.path.join('features','max_pep_len'), max_pep_len)
-np.save(os.path.join('features','max_a1_len'), max_a1_len)
-np.save(os.path.join('features','max_a2_len'), max_a2_len)
-np.save(os.path.join('features','max_a3_len'), max_a3_len)
-np.save(os.path.join('features','max_b1_len'), max_b1_len)
-np.save(os.path.join('features','max_b2_len'), max_b2_len)
-np.save(os.path.join('features','max_b3_len'), max_b3_len)
+np.save(os.path.join('example_run/features','max_pep_len'), max_pep_len)
+np.save(os.path.join('example_run/features','max_a1_len'), max_a1_len)
+np.save(os.path.join('example_run/features','max_a2_len'), max_a2_len)
+np.save(os.path.join('example_run/features','max_a3_len'), max_a3_len)
+np.save(os.path.join('example_run/features','max_b1_len'), max_b1_len)
+np.save(os.path.join('example_run/features','max_b2_len'), max_b2_len)
+np.save(os.path.join('example_run/features','max_b3_len'), max_b3_len)
 
 
 
 
 
-with open(os.path.join('features','protein_ft_dict.pkl'), 'wb') as f:
+with open(os.path.join('example_run/features','protein_ft_dict.pkl'), 'wb') as f:
     pickle.dump(protein_ft_dict, f)
 print('saved to protein_ft_dict.pkl')
 
