@@ -21,6 +21,10 @@ First create a conda environment, and activate the environment:
 conda env create -n tspred python=3.7.0
 conda activate tspred
 ```
+Clone this repository:
+```
+git clone https://github.com/ha01994/TSpred.git
+```
 Then install the package requirements using pip:
 ```
 pip install -r requirements.txt
