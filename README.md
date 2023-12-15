@@ -48,7 +48,7 @@ python train.py
 ```
 The trained models will be saved in the directory `save_dir/cnn` and `save_dir/att`.
 
-The training and validation losses will be saved in the directory `results/cnn` and `results/att`.
+The training and validation losses will be saved in the directory `losses/cnn` and `losses/att`.
 ### Testing
 To test the model, run:
 ```
