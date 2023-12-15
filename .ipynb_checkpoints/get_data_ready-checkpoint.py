@@ -14,19 +14,19 @@ with open('example_data/train.csv', 'r') as f:
     next(r)
     for line in r:
         peps.append(line[0])
-        tcrs.append('_'.join([line[2],line[3],line[4],line[5],line[6],line[7]]))
+        tcrs.append('_'.join([line[1],line[2],line[3],line[4],line[5],line[6]]))
 with open('example_data/val.csv', 'r') as f:
     r = csv.reader(f)
     next(r)
     for line in r:
         peps.append(line[0])
-        tcrs.append('_'.join([line[2],line[3],line[4],line[5],line[6],line[7]]))
+        tcrs.append('_'.join([line[1],line[2],line[3],line[4],line[5],line[6]]))
 with open('example_data/test.csv', 'r') as f:
     r = csv.reader(f)
     next(r)
     for line in r:
         peps.append(line[0])
-        tcrs.append('_'.join([line[2],line[3],line[4],line[5],line[6],line[7]]))
+        tcrs.append('_'.join([line[1],line[2],line[3],line[4],line[5],line[6]]))
 
 peps = list(set(peps))
 tcrs = list(set(tcrs))
@@ -54,7 +54,7 @@ with open('example_data/train.csv', 'r') as f:
     next(r)
     for line in r:
         peps.append(pep_seq_to_id[line[0]])
-        tcrs.append(tcr_seq_to_id['_'.join([line[2],line[3],line[4],line[5],line[6],line[7]])])
+        tcrs.append(tcr_seq_to_id['_'.join([line[1],line[2],line[3],line[4],line[5],line[6]])])
         labels.append(int(line[-1]))
         split.append('train')
 
@@ -63,7 +63,7 @@ with open('example_data/val.csv', 'r') as f:
     next(r)
     for line in r:
         peps.append(pep_seq_to_id[line[0]])
-        tcrs.append(tcr_seq_to_id['_'.join([line[2],line[3],line[4],line[5],line[6],line[7]])])
+        tcrs.append(tcr_seq_to_id['_'.join([line[1],line[2],line[3],line[4],line[5],line[6]])])
         labels.append(int(line[-1]))
         split.append('val')
 
@@ -72,7 +72,7 @@ with open('example_data/test.csv', 'r') as f:
     next(r)
     for line in r:
         peps.append(pep_seq_to_id[line[0]])
-        tcrs.append(tcr_seq_to_id['_'.join([line[2],line[3],line[4],line[5],line[6],line[7]])])
+        tcrs.append(tcr_seq_to_id['_'.join([line[1],line[2],line[3],line[4],line[5],line[6]])])
         labels.append(int(line[-1]))
         split.append('test')
     
