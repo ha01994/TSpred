@@ -2,7 +2,7 @@
 
 This is the code for the paper "TSpred: a robust prediction framework for TCR-epitope interactions using paired chain TCR sequence data" (BioRxiv paper link: https://www.biorxiv.org/content/10.1101/2023.12.04.570002v2). 
 
-
+&nbsp;
 
 ## Datasets
 The datasets used in the paper can be obtained by uncompressing the `datasets.zip` file. 
@@ -12,7 +12,7 @@ The datasets used in the paper can be obtained by uncompressing the `datasets.zi
 - NetTCR_strict
     - This dataset consists of 5 different cross validation datasets generated with 5 different random seeds.
 
-
+&nbsp;
 
 ## Setting up a conda environment for TSpred
 First create a conda environment, and activate the environment:
@@ -30,6 +30,7 @@ Then install the package requirements using pip:
 pip install -r requirements.txt
 ```
 
+&nbsp;
 
 
 ## Running code on an example dataset
@@ -90,11 +91,12 @@ Example format of `example_run/predictions.csv`:
     pep8,tcr4463,GLCTLVAML,TSGFNG_NVLDGL_AVRDSDYKLS_MNHNS_SASEGT_AAGDGDQETQY,0,0.0001
     pep13,tcr4748,LLWNGPMAV,NTAFDY_IRPDVSE_AASLFKAAGNKLT_SGHDT_YYEEEE_ASNQGRTEQY,0,0.2941
 
-
+&nbsp;
 
 
 ## Contact information
 If you have questions, please contact ha01994@kaist.ac.kr.
 
+&nbsp;
 
 
