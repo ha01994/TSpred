@@ -87,12 +87,13 @@ It will also generate `example_run/predictions.csv`, which provides information 
     pep12,tcr5238,NLVPMVATV,TSGFYG_NALDGL_AVRDQEGNTPLV_MDHEN_SYDVKM_ASMGGSNEQF,1,0.5253
     pep8,tcr4463,GLCTLVAML,TSGFNG_NVLDGL_AVRDSDYKLS_MNHNS_SASEGT_AAGDGDQETQY,0,0.0001
 
-&nbsp;
-
 
 ## Use pre-trained TSpred model to make predictions on a test dataset (example_run2)
 We also provide TSpred pre-trained on all of the NetTCR_full dataset, so that you can make predictions on your own test dataset.
-First `cd example_run2`. Provide test data in the same format as `test_data_sample.csv`. Then run:
+
+First `cd example_run2`. Provide test data in the same format as `test_data_sample.csv`. 
+
+Then run:
 ```
 python predict.py
 ```
