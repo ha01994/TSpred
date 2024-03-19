@@ -91,13 +91,13 @@ It will also generate `example_run/predictions.csv`, which provides information 
 ## Use pre-trained TSpred model to make predictions on a test dataset (example_run2)
 We also provide TSpred pre-trained on all of the NetTCR_full dataset, so that you can make predictions on your own test dataset.
 
-First `cd example_run2`. Provide test data in the same format as `test_data_sample.csv`. 
+First `cd example_run2`. `test_data_sample.csv` is provided as an example for an unseen epitope dataset. If you want to test on your own data, provide test data in the same format as `test_data_sample.csv`. 
 
 Then run:
 ```
 python predict.py
 ```
-
+which will return predictions in the `ensemble_predictions.csv` file. 
 
 
 ## Contact information
