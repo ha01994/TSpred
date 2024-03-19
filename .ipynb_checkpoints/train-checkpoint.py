@@ -6,27 +6,28 @@ import torch
 import torch.nn.functional as F
 import torch.nn as nn
 from utils.load_dataset import Dataset
-from models.model_cnn import cnnmodel
-from models.model_att import attmodel
+from src.model_cnn import cnnmodel
+from src.model_att import attmodel
 from utils.evaluate import *
 from utils.other import *
 import tqdm
 import shutil
 
 
+folder = sys.argv[1]
 
 
-if os.path.isdir('example_run/losses/'):
-    shutil.rmtree('example_run/losses/')
-if os.path.isdir('example_run/save_dir/'):
-    shutil.rmtree('example_run/save_dir/')
+if os.path.isdir('%s/losses/'%folder):
+    shutil.rmtree('%s/losses/'%folder)
+if os.path.isdir('%s/save_dir/'%folder):
+    shutil.rmtree('%s/save_dir/'%folder)
 
-os.mkdir('example_run/losses/')
-os.mkdir('example_run/losses/cnn')
-os.mkdir('example_run/losses/att')
-os.mkdir('example_run/save_dir/')
-os.mkdir('example_run/save_dir/cnn')
-os.mkdir('example_run/save_dir/att')
+os.mkdir('%s/losses/'%folder)
+os.mkdir('%s/losses/cnn'%folder)
+os.mkdir('%s/losses/att'%folder)
+os.mkdir('%s/save_dir/'%folder)
+os.mkdir('%s/save_dir/cnn'%folder)
+os.mkdir('%s/save_dir/att'%folder)
 
 
 
@@ -109,12 +110,12 @@ def run_evaluation(pair_idx, model, bsz, pairs_pep_indices, pairs_tcr_indices, a
 
 
 
-save_dir = 'example_run/save_dir/cnn/'
-result_dir = 'example_run/losses/cnn/'
+save_dir = '%s/save_dir/cnn/'%folder
+result_dir = '%s/losses/cnn/'%folder
 
 set_random_seed()
 
-dataset = Dataset('example_run/features/')
+dataset = Dataset('%s/features/'%folder)
 protein_ft_dict = dataset.to_tensor(device)
 all_label_mat, pairs_pep_indices, pairs_tcr_indices,\
 max_pep_len, train_index, val_index, test_index,\
@@ -186,12 +187,12 @@ for epoch in range(1, epochs_cnn+1):
      
         
 
-save_dir = 'example_run/save_dir/att/'
-result_dir = 'example_run/losses/att/'
+save_dir = '%s/save_dir/att/'%folder
+result_dir = '%s/losses/att/'%folder
 
 set_random_seed()
 
-dataset = Dataset('example_run/features/')
+dataset = Dataset('%s/features/')
 protein_ft_dict = dataset.to_tensor(device)
 all_label_mat, pairs_pep_indices, pairs_tcr_indices,\
 max_pep_len, train_index, val_index, test_index,\

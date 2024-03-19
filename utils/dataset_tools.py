@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 import copy
 
+
+
 amino_map_idx = {
     "A": 0,
     "R": 1,
@@ -50,3 +52,41 @@ def get_index_in_target_list(need_trans_list, target_list):
         idx = target_list.index(need_trans_str)
         trans_index.append(idx)
     return np.array(trans_index)
+
+
+
+
+def onehot_encode(seq_list, sql_len):    
+    amino_one_hot_ft_pad_dict = get_padding_ft_dict()    
+    ft_mat = []
+    for seq in seq_list:
+        ft = []
+        for idx in range(sql_len):
+            if idx < len(seq):
+                amino_name = seq[idx]
+            else:
+                amino_name = 'pad'
+            amino_ft = amino_one_hot_ft_pad_dict[amino_name]            
+            ft.append(amino_ft)            
+        ft = np.array(ft)
+        ft_mat.append(ft)
+    ft_mat = np.array(ft_mat).astype(np.float32)
+
+    return ft_mat
+
+
+
+
+aa_dic = {'A': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 
+          'G': 6, 'H': 7, 'I': 8, 'K': 9, 'L': 10,
+          'M': 11, 'N': 12, 'P': 13, 'Q': 14, 'R': 15,
+          'S': 16, 'T': 17, 'V': 18, 'W': 19, 'Y': 20}
+
+
+
+def aa_to_num(list_, max_len):
+    out = []
+    for seq in list_:
+        out.append([aa_dic[aa] for aa in seq] + [0]*(max_len-len(seq)))
+    out = np.array(out)
+    return out
