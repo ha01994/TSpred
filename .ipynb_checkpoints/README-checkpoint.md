@@ -35,7 +35,7 @@ Then you're ready to go.
 &nbsp;
 
 
-## Reproducing training/testing with TSpred (example_run/)
+## Reproducing training/testing with TSpred (example_run)
 Example training, validation, and test data for reproduction can be found in the `example_run/data` folder. 
 Here is the how the format of the files in `example_run/data` should look like:
 
@@ -90,13 +90,11 @@ It will also generate `example_run/predictions.csv`, which provides information 
 &nbsp;
 
 
-## Use pre-trained TSpred model to test on your own dataset (example_run2/)
+## Use pre-trained TSpred model to make predictions on a test dataset (example_run2)
 We also provide TSpred pre-trained on all of the NetTCR_full dataset, so that you can make predictions on your own test dataset.
-First `cd example_run2`. Then run:
+First `cd example_run2`. Provide test data in the same format as `test_data_sample.csv`. Then run:
 ```
-python get_data_ready.py
-python pp.py
-python test.py
+python predict.py
 ```
 
 
