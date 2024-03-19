@@ -99,7 +99,7 @@ python predict.py
 ```
 which will use the TSpred_CNN and TSpred_ensemble model weights in the `example_run2/best_models` folder to make predictions (ensemble model predictions).
 
-The above code will return predictions as the `ensemble_predictions.csv` file. 
+The above code will return predictions in the `ensemble_predictions.csv` file. A score of 0 means that a pair is predicted to be non-binding and 1 means binding. Therefore, the higher the score, the more likely a given TCR-peptide pair will bind, according to our model.
 
 
 ## Contact information
