@@ -58,7 +58,7 @@ The file will look like:
     pep16,tcr3719,0,val
     pep3,tcr2713,1,train
     
-The sequences corresponding to `pep_id`s and `tcr_id`s can be found in `example_run/formatted_data/ids_pep.csv` and `example_run/formatted_data/ids_tcr.csv`.
+The sequences corresponding to `pep_id`'s and `tcr_id`'s can be found in `example_run/formatted_data/ids_pep.csv` and `example_run/formatted_data/ids_tcr.csv`.
 
 Then you need to perform preprocessing on the formatted data, by running:
 ```
@@ -89,15 +89,17 @@ It will also generate `example_run/predictions.csv`, which provides information 
 
 
 ## Use pre-trained TSpred model to make predictions on a test dataset (example_run2)
-We also provide TSpred pre-trained on all of the NetTCR_full dataset, so that you can make predictions on your own test dataset.
+We also provide TSpred model pre-trained on all of the NetTCR_full dataset, so that you can make predictions on your own test dataset.
 
-First `cd example_run2`. `test_data_sample.csv` is provided as an example for an unseen epitope dataset. If you want to test on your own data, provide test data in the same format as `test_data_sample.csv`. 
+First `cd example_run2`. `example_run2/test_data_sample.csv` is provided as an example for an unseen epitope dataset. If you want to test on your own data, provide test data in the same format as `example_run2/test_data_sample.csv`. 
 
 Then run:
 ```
 python predict.py
 ```
-which will return predictions in the `ensemble_predictions.csv` file. 
+which will use the TSpred_CNN and TSpred_ensemble model weights in the `example_run2/best_models` folder to make predictions (ensemble model predictions).
+
+The above code will return predictions as the `ensemble_predictions.csv` file. 
 
 
 ## Contact information
